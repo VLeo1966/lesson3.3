@@ -29,6 +29,7 @@ color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 # Переменные для движения цели
 target_speed_x = 3
 target_speed_y = 3
+target_delay = 100
 
 # Счет очков
 score = 0
@@ -45,6 +46,7 @@ while running:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_height:
                 score += 1
+                target_delay -= 10
                 target_x = random.randint(0, SCREEN_WIDTH - target_width)
                 target_y = random.randint(0, SCREEN_HEIGHT - target_height)
 
@@ -65,9 +67,13 @@ while running:
     score_text = font.render(f"Счет: {score}", True, (255, 255, 255))
     screen.blit(score_text, (10, 10))
 
+    if target_delay <= 0:
+        congratulation_text = font.render(f"Ты меткий кликер!!! ", True, (255, 255, 255))
+        screen.blit(congratulation_text, (10, 30))
+
     pygame.display.update()
 
     # Задержка
-    pygame.time.delay(10)  # Задержка в миллисекундах
+    pygame.time.delay(target_delay)  # Задержка в миллисекундах
 
 pygame.quit()
