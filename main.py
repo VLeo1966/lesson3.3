@@ -17,7 +17,6 @@ target_height = 80
 target_x = random.randint(0, SCREEN_WIDTH - target_width)
 target_y = random.randint(0, SCREEN_HEIGHT - target_height)
 
-
 running = True
 while running:
     pass
